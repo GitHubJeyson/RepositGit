@@ -1,0 +1,24 @@
+<!-- views/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Productos</title>
+</head>
+<body>
+  <h1>Lista de Productos</h1>
+  <ul>
+    <% productos.forEach(function(producto) { %>
+      <li>
+        <img src="<%= producto.imagen %>" style="max-width: 150px; max-height: 150px;">
+        <h2><%= producto.nombre %></h2>
+        <p>Descripción: <%= producto.descripcion %></p>
+        <p>Precio: <%= producto.precio %></p>
+        <!-- Agrega más detalles del producto según necesites -->
+      </li>
+    <% }); %>
+  </ul>
+</body>
+</html>

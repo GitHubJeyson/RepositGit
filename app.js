@@ -1,29 +1,37 @@
-// app.js
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const bcrypt = require('bcryptjs');
+const methodOverride = require('method-override');
+const db = require('./config');
 
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
-// Middlewares
-app.set('view engine', 'ejs');
+app.use(methodOverride('_method'));
+// Configuración de sesiones
+// app.use(session({
+//     secret: 'secret',
+//     resave: true,
+//     saveUninitialized: true
+// }));
+
+// Body parser middleware
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({
-  secret: 'secret',
-  resave: true,
-  saveUninitialized: true
-}));
+// app.use(bodyParser.json());
+// app.use(express.static('public'));
 
-// Routes
-const authRoutes = require('./routes/authRoutes');
-const dashboardRoutes = require('./routes/dashboardRoutes');
-app.use('/auth', authRoutes);
-app.use('/dashboard', dashboardRoutes);
+// Establecer vistas
+app.set('view engine', 'ejs');
+app.set('views', './views');
 
-// Server
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+// Configurar Express para servir archivos estáticos desde el directorio 'public'
+app.use(express.static('public'));
+
+// Rutas
+const routes = require('./routes/rutas');
+app.use('/',routes);
+
+// Iniciar servidor
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
 });
