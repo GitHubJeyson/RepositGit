@@ -1,11 +1,10 @@
-// config/db.js
 
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
-  host: 'localhost',
+  host: '172.17.0.2',
   user: 'root',
-  password: '',
+  password: 'ubuntu5to',
   database: 'bd_sistemapedidos'
 });
 

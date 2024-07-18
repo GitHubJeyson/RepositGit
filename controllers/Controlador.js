@@ -1,6 +1,63 @@
-// productosController.js
 
 const Producto = require('../models/Modelos');
+const bcrypt = require('bcryptjs');
+
+// //controlador del registro
+
+// exports.showRegisterForm = (req, res) => {
+//   res.render('register');
+// };
+
+// exports.registerUser = (req, res) => {
+//   const { username, password } = req.body;
+
+//   // Hash de la contraseña
+//   bcrypt.hash(password, 10, (err, hashedPassword) => {
+//       if (err) throw err;
+
+//       // Guardar usuario en la base de datos
+//       User.create(username, hashedPassword, (err, newUser) => {
+//           if (err) {
+//               res.render('register', { error: 'Error al registrar usuario' });
+//           } else {
+//               res.redirect('/login');
+//           }
+//       });
+//   });
+// };
+
+
+
+// //controlador del login
+
+// exports.showLoginForm = (req, res) => {
+//   res.render('login');
+// };
+
+// exports.loginUser = (req, res) => {
+//   const { username, password } = req.body;
+
+//   // Buscar usuario en la base de datos
+//   User.findByUsername(username, (err, user) => {
+//       if (err || !user) {
+//           res.render('login', { error: 'Nombre de usuario o contraseña incorrectos' });
+//       } else {
+//           // Verificar contraseña
+//           bcrypt.compare(password, user.password, (err, result) => {
+//               if (result) {
+//                   req.session.userId = user.id; // Guardar el id del usuario en la sesión
+//                   res.redirect('/index'); // Redirigir al dashboard u otra página segura
+//               } else {
+//                   res.render('login', { error: 'Nombre de usuario o contraseña incorrectos' });
+//               }
+//           });
+//       }
+//   });
+// };
+
+
+
+//---------------------------------------------------------------------------------------
 
 const visualizarProductos = (req, res) => {
   Producto.obtenerTodos((err, productos) => {
